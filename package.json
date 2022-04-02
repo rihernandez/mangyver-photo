@@ -4,6 +4,7 @@
   "description": "Microservice to handle photo from mangyver services",
   "main": "index.js",
   "scripts": {
+    "postinstall": "tsc",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "clean": "rimraf dist/ uploads/",
@@ -42,5 +43,6 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
-  }
+  },
+  "engines": { "node": "12.22.3" }
 }
