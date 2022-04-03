@@ -15,16 +15,21 @@ export async function createPhoto(req: Request, res: Response): Promise<Response
     const newPhoto = { title, description, imagePath: req?.file?.path || "" };
     const photo = new Photo(newPhoto);
     await photo.save();
+    const fullUrl = req.protocol + '://' + req.get('host');
+    const url = fullUrl+"/"+photo.imagePath;
     return res.json({
         message: 'Photo Saved Successfully',
-        photo
+        photo,
+        url
     });
 };
 
 export async function getPhoto(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
     const photo = await Photo.findById(id);
-    return res.json(photo);
+    const fullUrl = req.protocol + '://' + req.get('host');
+    const url = fullUrl+"/"+photo?.imagePath;
+    return res.json({photo,url});
 }
 
 export async function deletePhoto(req: Request, res: Response): Promise<Response> {

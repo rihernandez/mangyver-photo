@@ -9,4 +9,5 @@ const storage = multer.diskStorage({
         cb(null, uuid() + path.extname(file.originalname))
     }
 });
+
 export default multer({storage});
