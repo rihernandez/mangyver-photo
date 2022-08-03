@@ -1,0 +1,136 @@
+{
+  "swaggerDefinition": { 
+    "info": {
+      "title": "mangyver-photo",
+      "description": "Microservice to handle photo from mangyver services",
+      "contact": {
+          "name": "Eiron Diaz",
+          "email": "eirondiaz@gmail.com"
+      },
+      "version": "1.0"
+    },
+    "paths": {
+      "/api/v1/photos": {
+        "get": {
+          "summary": "Get photos",
+          "tags": ["Photos"],
+          "responses": {
+            "200": {
+                "description": "ok"
+            }
+          }
+        },
+        "post": {
+          "summary": "Create photo",
+          "tags": ["Photos"],
+          "responses": {
+            "201": {
+              "description": "created"
+            }
+          },
+          "consumes": ["multipart/form-data"],
+          "parameters": [
+            {
+              "in": "formData",
+              "type": "file"
+            },
+            {
+              "in": "body",
+              "description": "data",
+              "schema": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": ["title", "description"]
+              }
+            }
+          ]
+        }
+      },
+      "/api/v1/photos/{id}": {
+        "get": {
+          "summary": "Get photo by id",
+          "tags": ["Photos"],
+          "responses": {
+            "200": {
+                "description": "ok"
+            }
+          },
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Photo id",
+              "required": true,
+              "schema": {
+                  "type": "string"
+              }
+            }
+          ]
+        },
+        "delete": {
+          "summary": "Delete photo",
+          "tags": ["Photos"],
+          "responses": {
+            "200": {
+                "description": "ok"
+            }
+          },
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Photo id",
+              "required": true,
+              "schema": {
+                  "type": "string"
+              }
+            }
+          ]
+        },
+        "put": {
+          "summary": "Update photo",
+          "tags": ["Photos"],
+          "responses": {
+            "200": {
+                "description": "ok"
+            }
+          },
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "Photo id",
+              "required": true,
+              "schema": {
+                  "type": "string"
+              }
+            },
+            {
+              "in": "body",
+              "description": "data",
+              "schema": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apis": ["src/swagger/swagger-doc.ts"]
+}
